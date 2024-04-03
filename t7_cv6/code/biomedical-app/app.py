@@ -22,6 +22,16 @@ def server(input, output, session):
     #   The update method should return a string about which method was used when inserting the patient
     #   (Generate new data if only the patient_id input is present or load the data from csv file, if file is present).
     #   Assign the result to the txt_status variable here in server using a method '.set()' on a reactive Value variable
+    @reactive.Effect
+    @reactive.event(input.add_patient)
+    def _():
+        new_patient_id = input.add_patient_id()
+        new_patient_file = input.add_patient_file()
+
+        if new_patient_id == '':
+            print('No new Patient ID.')
+
+        utils.update_patient_data(df_reactive, new_patient_file, new_patient_id)
 
     @reactive.Effect
     @reactive.event(input.update_data)

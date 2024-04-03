@@ -7,11 +7,13 @@ app_ui = ui.page_fluid(
         ui.panel_sidebar(
             ui.panel_title("Biomedical Data Visualization and Analysis"),
             # TODO 1: create ui.input_text to read a New Patient ID from user input
-
+            ui.input_text("add_patient_id", "Enter new Patient ID", placeholder="New Patient ID"),
             # TODO 2: create ui.input_file to read Patient Data from file, let the file accept CSV only
             #  (attribute accept=".csv")
+            ui.input_file("add_patient_file", "Choose CSV File", placeholder="New Patient From File"),
 
             # TODO 3: create ui.input_action_button Create a New Patient Record
+            ui.input_action_button("add_patient", "Add Patient"),
 
             ui.output_text("txt_status_code"),
             ui.input_text("patient_id", "Select Patient", placeholder="Patient ID", value="Patient 1"),

@@ -26,6 +26,29 @@ import data_init as data
 #  10.  Set the df_reactive to current_df (.set())
 #  11.  Return the operation result String
 
+def update_patient_data(df_reactive, file_info, patient_id):
+    current_reactive = df_reactive.get()
+    if file_info:
+        csv_file = pd.read_csv(file_info[0]["datapath"], header=[0, 1])
+        print(csv_file)
+        data.patient_ids.append(csv_file[0][0])
+        csv_file.set_index(df_reactive.index, inplace=True)
+        current_reactive = pd.concat([current_reactive, csv_file], axis=1)
+        result = f"Patient {data.patient_ids[-1]} read from CSV file."
+        return
+
+    else:
+        print("INFO: No file info")
+        data.patient_ids.append(patient_id)
+        for measurement in data.measurements:
+            current_reactive[(patient_id, measurement)] = np.random.randint(100, 200,
+                                                                      size=len(data.dates)) + np.random.randn(
+                len(data.dates)) * 15
+        result = f"Patient {data.patient_ids[-1]} are generated."
+
+    df_reactive.set(current_reactive)
+    return result
+
 # Code for 8. step
 # current_df[(new_patient_id, measurement)] = np.random.randint(100, 200, size=len(data.dates)) + np.random.randn(
 #                 len(data.dates)) * 15
