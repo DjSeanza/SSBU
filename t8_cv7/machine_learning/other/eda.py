@@ -5,6 +5,7 @@ import seaborn as sns
 from sklearn.datasets import load_breast_cancer
 from sklearn.ensemble import RandomForestClassifier
 
+
 def load_data():
     """
     Loads the breast cancer dataset and returns it as a pandas DataFrame,
@@ -15,6 +16,7 @@ def load_data():
     df['target'] = data.target
     return df, data.target_names
 
+
 def plot_class_distribution(df):
     """
     Plots the distribution of classes in the dataset.
@@ -22,6 +24,7 @@ def plot_class_distribution(df):
     sns.countplot(x='target', data=df)
     plt.title('Class Distribution')
     plt.show()
+
 
 def plot_feature_distributions(df):
     """
@@ -31,6 +34,7 @@ def plot_feature_distributions(df):
     plt.tight_layout()
     plt.show()
 
+
 def plot_correlation_matrix(df):
     """
     Plots the correlation matrix of the features in the dataset.
@@ -39,6 +43,7 @@ def plot_correlation_matrix(df):
     sns.heatmap(df.corr(), annot=True, fmt=".2f", cmap='coolwarm')
     plt.title('Feature Correlation Matrix')
     plt.show()
+
 
 def plot_box_plots(df):
     """
@@ -51,12 +56,14 @@ def plot_box_plots(df):
     plt.tight_layout()
     plt.show()
 
+
 def plot_pair_plot(df, features):
     """
     Plots pair plots for the selected features in the dataset.
     """
     sns.pairplot(df, vars=features, hue="target")
     plt.show()
+
 
 def feature_importance(df):
     """
@@ -74,6 +81,7 @@ def feature_importance(df):
     plt.xticks(range(X.shape[1]), X.columns[indices], rotation=90)
     plt.tight_layout()
     plt.show()
+
 
 if __name__ == "__main__":
     df, target_names = load_data()
