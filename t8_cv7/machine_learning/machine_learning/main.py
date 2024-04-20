@@ -33,7 +33,7 @@ def main():
 
     # Plot the results using the Plotter class
     plotter = Plotter()
-    plotter.plot_metric_density(results, metrics=('accuracy', 'roc_auc', 'f1_score', 'precision'))
+    plotter.plot_metric_density(results, metrics=('accuracy', 'roc_auc', 'f1_score', 'precision', 'cohen_kappa'))
     plotter.plot_evaluation_metric_over_replications(
         experiment.results.groupby('model')['accuracy'].apply(list).to_dict(),
         'Accuracy per Replication and Average Accuracy', 'Accuracy')
