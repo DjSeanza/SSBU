@@ -24,6 +24,7 @@ class Plotter:
             if i == 0:
                 ax.legend()
         plt.tight_layout()
+        plt.savefig("../figures/plot_metric_density.png")
         plt.show()
 
     def plot_evaluation_metric_over_replications(self, all_metric_results, title, metric_name):
@@ -43,6 +44,7 @@ class Plotter:
         plt.xlabel('Replication')
         plt.ylabel(metric_name)
         plt.legend()
+        plt.savefig("../figures/plot_evaluation_metric_over_replications_" + metric_name + ".png")
         plt.show()
 
     def plot_confusion_matrices(self, confusion_matrices):
@@ -58,6 +60,7 @@ class Plotter:
             plt.title(f'Average Confusion Matrix: {model_name}')
             plt.xlabel('Predicted label')
             plt.ylabel('True label')
+            plt.savefig("../figures/plot_confusion_matrices_" + model_name + ".png")
             plt.show()
 
     def print_best_parameters(self, results):
